@@ -6,3 +6,6 @@
   @apply bg-white dark:bg-mydark2 !important;
   
 }
+.textWhite{
+  @apply text-white dark:bg-white !important;
+}
