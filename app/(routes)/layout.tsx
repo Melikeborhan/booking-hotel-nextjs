@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from '../(auth)/_components/Navbar'
 
 interface RouterLayoutProps {
     children: React.ReactNode
@@ -6,7 +7,7 @@ interface RouterLayoutProps {
 const RooterLayout = ({children}:RouterLayoutProps) => {
   return (
     <>
-        Navbar
+        <Navbar/>
         <div className='min-h-screen'>
         {children}
         </div>
