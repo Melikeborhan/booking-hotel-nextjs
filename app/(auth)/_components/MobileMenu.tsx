@@ -8,6 +8,8 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 import { MenuIcon } from 'lucide-react'
+import NavItem from './NavItem'
+import { NavMenu } from '@/constans'
   
 
 const MobileMenu = () => {
@@ -20,7 +22,11 @@ const MobileMenu = () => {
   <SheetContent className='bgone'>
     <SheetHeader>
       <SheetDescription>
-        
+        <div className='flex-col flex text-xl mt-8 lg:hidden items-center ml-auto gap-9'>  
+      {NavMenu.map((item,index)=> (
+            <NavItem key={index} title={item.title}  url = {item.url}  />
+           ))}
+           </div>
       </SheetDescription>
     </SheetHeader>
   </SheetContent>

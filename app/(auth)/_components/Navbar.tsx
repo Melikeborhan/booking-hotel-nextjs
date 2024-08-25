@@ -22,8 +22,8 @@ const Navbar = () => {
           </div>
           <div className='flex-row lg:flex hidden items-center gap-9 ml-auto'>
            
-           {NavMenu.map((item)=> (
-            <NavItem  title={item.title}  url = {item.url}  />
+           {NavMenu.map((item,index)=> (
+            <NavItem key={index} title={item.title}  url = {item.url}  />
            ))}
 
 
