@@ -7,50 +7,48 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-
 import Autoplay from "embla-carousel-autoplay"
 import { SliderImage } from '@/constans'
 import Image from 'next/image'
+import HeroForm from './HeroForm'
+import Navbar from './Navbar'
 
-  
 const Hero = () => {
   return (
-    <div className='relative h-[32rem]'>
-    <Carousel
-    plugins={[
-        Autoplay({
-          delay: 3000,
-        }),
-      ]}
+    <div className='relative h-[32rem] lg:h-[44rem]'>
+     
+      <Navbar/>
 
-    opts={{
-        align: "start",
-        loop: true,
-      }}
-    >
-  <CarouselContent>
-      {SliderImage.map((image,index)=>(
-        <CarouselItem key={index}>
-            <Image src={image.href} 
-            alt={image.alt}
-            width={1920}
-            height={1080}
-            className='h-[32rem] lg:[44rem] w-full object-cover  brightness-35'
-            
-            />
-        </CarouselItem>
-      ))}
+      <Carousel
+        plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+        opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+        <CarouselContent>
+          {SliderImage.map((image, index) => (
+            <CarouselItem key={index}>
+              <Image 
+                src={image.href} 
+                alt={image.alt}
+                width={1920}
+                height={1080}
+                className='h-[32rem] lg:h-[44rem] w-full object-cover brightness-50' 
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className='hidden lg:flex right-0'/>
+        <CarouselNext className='hidden lg:flex right-0'/>
+      </Carousel>
 
-
-    
-    <CarouselItem>...</CarouselItem>
-    <CarouselItem>...</CarouselItem>
-  </CarouselContent>
-  <CarouselPrevious className='left-0'/>
-  <CarouselNext className='right-0'/>
-</Carousel>
-</div>
-
+      <HeroForm />
+    </div>
   )
 }
 

@@ -9,3 +9,10 @@
 .textWhite{
   @apply text-white dark:bg-white !important;
 }
+
+.validationLabel{
+  @apply text-white dark:text-white !important;
+}
+.validationError{
+  @apply text-red-600 dark:text-red-600 !important;
+}

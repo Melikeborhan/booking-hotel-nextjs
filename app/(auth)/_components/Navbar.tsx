@@ -11,14 +11,12 @@ import { usePathname } from 'next/navigation'
 const Navbar = () => {
 
   const pathname = usePathname()
-  console.log(pathname)
 
   return (
-    <>
-    <div className = {`w-full z-20 items-center ${pathname != '/'? 'bg-mydark2' : ''}`}>
+    <div className = {`w-full z-30 absolute top-0 items-center ${pathname != '/' ? 'bg-mydark2' : 'bg-transparent'}`}>
       <div className='container'>
         <div className='px-4 py-6 flex flex-row items-center'>
-          <div className='w-20 py-4 px-3 rounded-xl '>
+          <div className='w-20 py-4 px-3 rounded-xl'>
             <Image src='/hotel-logo.jpg' 
             alt='logo'
             width={500}
@@ -26,28 +24,23 @@ const Navbar = () => {
             className='w-full'/>
           </div>
           <div className='flex-row lg:flex hidden items-center gap-9 ml-auto'>
-           
-           {NavMenu.map((item,index)=> (
-            <NavItem key={index} title={item.title}  url = {item.url}  />
-           ))}
-
-
-
+            {NavMenu.map((item, index) => (
+              <NavItem key={index} title={item.title} url={item.url} />
+            ))}
           </div>
           <div className='flex lg:flex items-center ml-auto gap-10'>
-            <UserToggle/>
-            <ModeToggle/>
+            <UserToggle />
+            <ModeToggle />
 
             <div className='lg:hidden flex flex-row items-center ml-auto gap-2'>
-              <MobileMenu/>
+              <MobileMenu />
             </div>
-
           </div>
         </div>
       </div>
     </div>
-    </>
   )
 }
+
 
 export default Navbar
