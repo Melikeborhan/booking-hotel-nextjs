@@ -19,7 +19,7 @@ const MobileMenu = () => {
   <SheetTrigger>
     <MenuIcon className='text-white dark:text-white'/>
   </SheetTrigger>
-  <SheetContent className='bgone'>
+  <SheetContent className='bgdark'>
     <SheetHeader>
       <SheetDescription>
         <div className='flex-col flex text-xl mt-8 lg:hidden items-center ml-auto gap-9'>  

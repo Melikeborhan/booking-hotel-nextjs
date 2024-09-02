@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../(auth)/_components/Navbar'
+import Footer from '../(auth)/_components/Footer'
 
 interface RouterLayoutProps {
     children: React.ReactNode
@@ -11,8 +12,8 @@ const RooterLayout = ({children}:RouterLayoutProps) => {
         <div className='min-h-screen'>
         {children}
         </div>
-       
-        Footer
+        
+      <Footer/>
     </>
   )
 }

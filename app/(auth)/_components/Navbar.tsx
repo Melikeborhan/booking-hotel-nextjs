@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ModeToggle } from '@/components/ModeToggle'
 import UserToggle from './UserToggle'
 import MobileMenu from './MobileMenu'
@@ -12,8 +12,29 @@ const Navbar = () => {
 
   const pathname = usePathname()
 
+  
+  const [isScroolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.scrollY > 50){
+        setIsScrolled(true)
+      }else{
+        setIsScrolled(false)
+      }
+    }
+    
+    window.addEventListener('scroll',handleScroll)
+
+
+    return () => {
+      window.removeEventListener('scroll',handleScroll)
+    }
+  },[])
+
+
   return (
-    <div className = {`w-full z-30 absolute top-0 items-center ${pathname != '/' ? 'bg-mydark2' : 'bg-transparent'}`}>
+    <div className = {`w-full z-30 absolute top-0 items-center ${pathname != '/'? 'bg-mydark2' : (isScroolled ? 'bg-mydark2':'bg-transparent')} fixed`}>
       <div className='container'>
         <div className='px-4 py-6 flex flex-row items-center'>
           <div className='w-20 py-4 px-3 rounded-xl'>
