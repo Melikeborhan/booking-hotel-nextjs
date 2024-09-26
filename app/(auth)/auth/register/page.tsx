@@ -46,8 +46,9 @@ const RegisterPage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "deneme1@gmail.com",
-      password: "deneme123"
+      username:"",
+      email: "",
+      password: ""
     },
   })
 
@@ -111,7 +112,7 @@ const RegisterPage = () => {
               <Loader2 size={20} className="animate-spin" /> Loading
               </>
             ):
-              <>Login</>
+              <>Register</>
             }
 
 
@@ -120,10 +121,10 @@ const RegisterPage = () => {
 
           <div className='mt-8'>
             <Label className='flex flex-col items-center'>
-              Don't have an account?
+             Allready account
             </Label>
             <Link href="/auth/login" className='mt-10 text-slate-500'>
-            Click here to create a new account
+            Click here to Login 
             </Link>
 
           </div>
