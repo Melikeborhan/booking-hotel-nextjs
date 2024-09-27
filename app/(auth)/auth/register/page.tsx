@@ -21,9 +21,14 @@ import { Loader2 } from 'lucide-react'
 
 import { Label } from '@radix-ui/react-dropdown-menu'
 import Link from 'next/link'
+import { pb } from '@/lib/pocketbase'
+import { useToast } from '@/components/ui/use-toast'
 
 
 const formSchema = z.object({
+  name : z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
   username : z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
@@ -33,6 +38,9 @@ const formSchema = z.object({
   password: z.string().min(2, {
       message: "Password must be at least 2 characters.",
     }),
+  passwordConfirm: z.string().min(2, {
+    message: "Password Confirm  must be at least 2 characters.",
+    }), 
   })
 
  
@@ -41,6 +49,7 @@ const formSchema = z.object({
 const RegisterPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const {toast} = useToast();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -53,10 +62,38 @@ const RegisterPage = () => {
   })
 
 // 2. Define a submit handler.
-  const onSubmit=(data: z.infer<typeof formSchema>) => {
+  const onSubmit= async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-  console.log(data)
-    setIsLoading(false);
+ 
+    try{
+      const postdata = {
+        username: data.username,
+        email:data.email,
+        emailVisibility: true,
+        password: data.password,
+        passwordConfirm: data.passwordConfirm,
+        name: data.name
+    };
+      const records = await pb.collection('users').create(postdata)
+      toast({
+        variant: "success",
+        title: "Register Success.",
+        
+      })
+    }catch(error){
+      toast({
+        variant: "destructive",
+        title: "Something went wrong or user already account.",
+        
+      })
+    
+    router.refresh();
+    router.push('/auth/login');
+    }
+    finally{
+      setIsLoading(false);
+    }
+  
 }
 
 
@@ -65,6 +102,20 @@ const RegisterPage = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-4/5">
+      <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>name</FormLabel>
+              <FormControl>
+                <Input placeholder="name" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
       <FormField
           control={form.control}
           name="username"
@@ -100,7 +151,20 @@ const RegisterPage = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="******" {...field} />
+                <Input type='password' placeholder="******" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>passwordConfirm</FormLabel>
+              <FormControl>
+                <Input type='password' placeholder="***" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

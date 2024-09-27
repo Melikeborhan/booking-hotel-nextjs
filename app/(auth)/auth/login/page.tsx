@@ -38,7 +38,7 @@ const formSchema = z.object({
 const LoginPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+  
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,7 +51,12 @@ const LoginPage = () => {
 // 2. Define a submit handler.
   const onSubmit=(data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-  console.log(data)
+
+    console.log(data)
+
+    
+
+
     setIsLoading(false);
 }
 
