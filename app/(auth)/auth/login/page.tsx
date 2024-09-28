@@ -18,9 +18,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
-
 import { Label } from '@radix-ui/react-dropdown-menu'
 import Link from 'next/link'
+import { pb } from '@/lib/pocketbase'
+import { useToast } from '@/components/ui/use-toast'
 
 
 const formSchema = z.object({
@@ -38,31 +39,48 @@ const formSchema = z.object({
 const LoginPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const {toast} = useToast();
   
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "deneme1@gmail.com",
-      password: "deneme123"
+      email: "",
+      password: ""
     },
   })
 
 // 2. Define a submit handler.
-  const onSubmit=(data: z.infer<typeof formSchema>) => {
-    setIsLoading(true);
+const onSubmit = async (data: z.infer<typeof formSchema>) => {
 
-    console.log(data)
+  setIsLoading(true)
+  try {
 
+    const record = await pb.collection('users').authWithPassword(
+      data.email,data.password
+    );
+
+    toast({
+      variant: "success",
+      title: "Login Success",
+    })
+    router.refresh();
+    router.push("/");
     
+  } catch (error) {
+    
+    toast({
+      variant: "destructive",
+      title: "Something went wrong",
+     
+    })
+   
+  }
 
-
-    setIsLoading(false);
+    finally{
+      setIsLoading(false)
+    }
 }
-
-
-
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-4/5">
