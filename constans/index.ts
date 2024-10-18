@@ -1,6 +1,9 @@
 import { url } from "inspector";
 import { title } from "process";
 
+export const ApiImagesUrl = "https://known-find.pockethost.io/api/files/"
+
+
 export const NavMenu = [
     {
         title:"Home",
@@ -20,6 +23,7 @@ export const NavMenu = [
     },
 
 ]
+/*
 
 export const SliderImage = [
     {
@@ -38,4 +42,4 @@ export const SliderImage = [
       alt: "Slider 3"
     }
   ];
-  
+  */

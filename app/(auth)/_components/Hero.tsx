@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Carousel,
     CarouselContent,
@@ -12,8 +12,43 @@ import { SliderImage } from '@/constans'
 import Image from 'next/image'
 import HeroForm from './HeroForm'
 import Navbar from './Navbar'
+import { getSlider } from '@/app/actions/getSlider'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const Hero = () => {
+  const [sliderImages,setSliderImages] =useState([])
+  const [loading,setLoading] = useState(true)
+
+  useEffect(()=>{
+    async function fetchSlider(){
+      try{
+        const images = await getSlider()
+        setSliderImages(images)
+       
+
+      }catch (error){
+        console.error('Error getting slider images:' ,error)
+
+      }
+      finally{
+        setLoading(false)
+      }
+    }
+  fetchSlider()
+  },[])
+
+  if(loading || !loading && sliderImages.length === 0 ){
+    return (
+      <div className='relative h-[32rem]'>
+        <div className='h-[32rem] lg:h-[44rem] w-full '>
+          <Skeleton className='h-full w-full bg-slate-600'/>
+
+        </div>
+
+      </div>
+    )
+  }
+
   return (
     <div className='relative h-[32rem] lg:h-[44rem]'>
      
@@ -31,7 +66,7 @@ const Hero = () => {
           }}
         >
         <CarouselContent>
-          {SliderImage.map((image, index) => (
+          {sliderImages.map((image, index) => (
             <CarouselItem key={index}>
               <Image 
                 src={image.href} 
