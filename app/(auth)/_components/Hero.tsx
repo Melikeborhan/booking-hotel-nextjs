@@ -8,21 +8,22 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
-import { SliderImage } from '@/constans'
+import { apiImagesUrl, SliderImage } from '@/constans'
 import Image from 'next/image'
 import HeroForm from './HeroForm'
 import Navbar from './Navbar'
 import { getSlider } from '@/app/actions/getSlider'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Slider } from '@/types/types'
 
 const Hero = () => {
-  const [sliderImages,setSliderImages] =useState([])
+  const [sliderImages,setSliderImages] =useState<Slider[]>([]);
   const [loading,setLoading] = useState(true)
 
   useEffect(()=>{
     async function fetchSlider(){
       try{
-        const images = await getSlider()
+        const images : Slider[]= await getSlider();
         setSliderImages(images)
        
 
@@ -66,11 +67,11 @@ const Hero = () => {
           }}
         >
         <CarouselContent>
-          {sliderImages.map((image, index) => (
+          {sliderImages.map((data, index) => (
             <CarouselItem key={index}>
               <Image 
-                src={image.href} 
-                alt={image.alt}
+                src={`${apiImagesUrl}/${data.collectionId}/${data.id}/${data.image}`}
+                alt={data.alt}
                 width={1920}
                 height={1080}
                 className='h-[32rem] lg:h-[44rem] w-full object-cover brightness-50' 

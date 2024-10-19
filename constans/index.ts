@@ -1,7 +1,7 @@
 import { url } from "inspector";
 import { title } from "process";
 
-export const ApiImagesUrl = "https://known-find.pockethost.io/api/files/"
+export const apiImagesUrl = "https://known-find.pockethost.io/api/files/"
 
 
 export const NavMenu = [
