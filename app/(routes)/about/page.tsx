@@ -19,6 +19,7 @@ const AboutPage = () => {
     fetchUser();
   },[])
   return (
+    
     <div className='pt-44'>
       {user ? (
         <>

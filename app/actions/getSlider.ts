@@ -6,7 +6,7 @@ export async function getSlider() {
 
         // you can also fetch all records at once via getFullList
         const records = await pb.collection('sliders').getFullList({
-    sort: '-created',
+            sort: '-created',
     }); 
     return records
     }catch (error){

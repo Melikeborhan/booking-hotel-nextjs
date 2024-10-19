@@ -4,9 +4,37 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Loader2Icon, MailIcon, NetworkIcon, PhoneIcon, Rotate3DIcon } from 'lucide-react'
+import { Hotel } from '@/types/types'
+import HeroForm from './HeroForm'
 
-const Footer = () => {
-  return (
+
+interface FooterProps {
+        data:Hotel;
+        loading:boolean;
+
+}
+
+
+
+
+const Footer = ({data,loading}:FooterProps) => {
+    if(loading || !loading && data.length === 0 ){
+        return (
+          <div className='relative text-white'>
+            <div className='h-[32rem] lg:h-[44rem] w-full '>
+              <Skeleton className='h-full w-full bg-slate-600'/>
+    
+            </div>
+            
+    
+          </div>
+        )
+      }
+  
+  
+  
+  
+    return (
     <>
     <div className='relative text-white'>
         <div className='z-10 absolute inset-0'>
@@ -42,8 +70,8 @@ const Footer = () => {
                             className='w-full'
                             />
                         </div>
-                        <p className='text-gray-400 mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quas soluta, dolores nam id animi dicta laboriosam perferendis deleniti maiores, quo quam et commodi sunt natus, delectus numquam sed dolorum cum alias velit temporibus corrupti sapiente fuga? Aliquam tenetur, in error id quam soluta rem, accusantium repudiandae, nobis culpa voluptas!</p>
-                    </div>
+                        <p className='text-gray-400 mt-2'>{data.summary.replace(/<\/?[^>]+(>|$)/g, "")}</p>
+                        </div>
 
                     {/* Column 2 */}
                     <div>
@@ -62,9 +90,9 @@ const Footer = () => {
                     <div>
                     <h3 className='text-xl font-bold mb-4'>Contact</h3>
                             <p className=' text-gray-400 space-y-2'>
-                                <span className='block  flex'><Rotate3DIcon/> Turkey Istanbul</span>
-                                <span className='block flex' ><PhoneIcon size={20}/>+093322111</span>
-                                <span className='block flex' ><MailIcon/> email@gmaıl.com</span>
+                                <span className='block  flex'><Rotate3DIcon/>{data.location}</span>
+                                <span className='block flex' ><PhoneIcon size={20}/>{data.contact_phone}</span>
+                                <span className='block flex' ><MailIcon/> {data.contact_email}</span>
 
                                 
                             </p>
