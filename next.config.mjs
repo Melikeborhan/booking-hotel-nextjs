@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images:{
-        domains : ['known-find.pockethost.io'],
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'known-find.pockethost.io',
+                port: '',
+                pathname: '/**', // Eğer belirli bir yol (path) gerekiyorsa buraya ekleyebilirsin
+            },
+        ],
     },
 };
 
