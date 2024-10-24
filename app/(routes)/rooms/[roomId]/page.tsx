@@ -1,3 +1,5 @@
+import { getRoomDetail } from '@/app/actions/getRooms';
+import { log } from 'console';
 import React from 'react'
 
 interface RoomPageDetailProps {
@@ -7,7 +9,11 @@ interface RoomPageDetailProps {
     }
 }
 
-const RoomPageDetail = ({params}:RoomPageDetailProps) => {
+const RoomPageDetail = async({params}:RoomPageDetailProps) => {
+  const room = await getRoomDetail(params.roomId)
+  console.log(room);
+  
+
   return (
     <div className='pt-44'>RoomPageDetail
     {params.roomId}
