@@ -1,9 +1,9 @@
 import Hero from "@/app/(auth)/_components/Hero";
 import RoomItem from "@/app/(auth)/_components/RoomItem";
-import { getRooms } from "@/app/actions/getRooms";
+import { getHomeRooms} from "@/app/actions/getRooms";
 
 export default async function Home() {
-  const rooms = await getRooms();
+  const rooms = await getHomeRooms();
   return (
     <div>
       <Hero />
