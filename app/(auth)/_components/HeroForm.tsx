@@ -54,17 +54,7 @@ const formSchema = z.object({
         message: "Select number of children",
   })
     })
-
-const onSubmit = (data: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(data)
-  }
-
  
-  
-
-
 
 const HeroForm = () => {
 
@@ -78,6 +68,11 @@ const HeroForm = () => {
 
         },
       })
+      const onSubmit = (data: z.infer<typeof formSchema>) => {
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+        console.log(data)
+      }
 
 
   return (

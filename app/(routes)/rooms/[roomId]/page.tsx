@@ -9,6 +9,7 @@ import {
 import { apiImagesUrl } from '@/constans';
 import Image from 'next/image';
 import { getRoomDetail } from '@/app/actions/getRooms';
+import RezervationForm from '@/app/(auth)/_components/RezervationForm';
 
 
 interface RoomPageDetailProps {
@@ -21,9 +22,9 @@ const RoomPageDetail = async ({ params }: RoomPageDetailProps) => {
 
   const room = await getRoomDetail(params.roomId)
   return (
-    <div className='pt-44 max-w-6xl mx-auto p-4 '>
+    <div className='pt-44 max-w-6xl mx-auto p-4 mt-10'>
       <div className='bgone shadow-md rounded-lg myborder overflow-hidden flex flex-col md:flex-row'>
-        <div className='md:w-1/2'>
+        <div className='md:w-1/2  '>
           <Carousel>
             <CarouselContent>
 
@@ -47,7 +48,7 @@ const RoomPageDetail = async ({ params }: RoomPageDetailProps) => {
           </Carousel>
 
         </div>
-        <div className='md:w-1/2 p-4'>
+        <div className='md:w-1/2 p-4 flex  flex-col  items-center justify-center gap-4  '>
         <h2 className='text-2xl font-bold mb-2'>{room.room_name}</h2>
         <p>{room.type}</p>
         <div className='text-lg font-semibold '>${room.price} per night</div>
@@ -57,9 +58,9 @@ const RoomPageDetail = async ({ params }: RoomPageDetailProps) => {
       </div>
 
       <div className='bgone mt-5 rounded-lg overflow-hidden shadow-md  mb-8 myborder'>
-
-        
+        <RezervationForm  roomId={params.roomId}/>
       </div>
+
     </div>
   )
 }
