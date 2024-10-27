@@ -40,7 +40,7 @@ const UserToggle = () => {
               <DropdownMenuLabel className='text-yellow-500'>{user.username}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               
-              <DropdownMenuItem className='cursor-pointer' onClick={()=>{localStorage.removeItem("pocketbase_auth");setUser(null);router.push("/")}}>
+              <DropdownMenuItem className='cursor-pointer' onClick={()=>{localStorage.removeItem("pocketbase_auth");setUser(null);router.refresh();router.push("/")}}>
                 Logout
               </DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
