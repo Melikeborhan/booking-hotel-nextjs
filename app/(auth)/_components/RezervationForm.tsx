@@ -88,11 +88,11 @@ const RezervationForm = ({ roomId }: RezervationFormProps) => {
 
 
   return (
-    <div className='p-6'>
+    <div className='p-6 '>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-4 gap-4">
         
-        <div className='col-span-1 md:col-span-2'>
+        <div className='col-span-1 md:col-span-2 '>
                   <FormField
                       control={form.control}
                       name="guestFullname"
@@ -142,14 +142,14 @@ const RezervationForm = ({ roomId }: RezervationFormProps) => {
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
+                    <PopoverContent className="w-auto p-0 " align="start">
                       <Calendar
                         mode="single"
                         selected={field.value}
                         onSelect={field.onChange}
                         disabled={date => date > new Date() || date < new Date("1900-01-01")}
                         initialFocus
-                        className="bg-white"
+                        className="dark:bg-slate-500 bg-white"
                       />
                     </PopoverContent>
                   </Popover>
@@ -183,7 +183,7 @@ const RezervationForm = ({ roomId }: RezervationFormProps) => {
                         onSelect={field.onChange}
                         disabled={date => date > new Date() || date < new Date("1900-01-01")}
                         initialFocus
-                        className="bg-white"
+                        className="bg-white dark:bg-slate-500"
                       />
                     </PopoverContent>
                   </Popover>
@@ -204,7 +204,7 @@ const RezervationForm = ({ roomId }: RezervationFormProps) => {
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Adults" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className='dark:bg-slate-500 bg-white'>
                       <SelectItem value="1">1</SelectItem>
                       <SelectItem value="2">2</SelectItem>
                       <SelectItem value="3">3</SelectItem>
@@ -230,7 +230,7 @@ const RezervationForm = ({ roomId }: RezervationFormProps) => {
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Children" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className='dark:bg-slate-500 bg-white'>
                       <SelectItem value="0">0</SelectItem>
                       <SelectItem value="1">1</SelectItem>
                       <SelectItem value="2">2</SelectItem>

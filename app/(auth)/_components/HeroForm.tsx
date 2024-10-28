@@ -117,7 +117,7 @@ const HeroForm = () => {
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
-                          className="bg-white"  // Calendar bg color
+                          className="bg-white dark:bg-slate-500"  
                         />
                       </PopoverContent>
                     </Popover>
@@ -161,7 +161,7 @@ const HeroForm = () => {
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
-                          className="bg-white"  // Calendar bg color
+                          className="bg-white dark:bg-slate-500"  // Calendar bg color
                         />
                       </PopoverContent>
                     </Popover>
@@ -184,7 +184,7 @@ const HeroForm = () => {
                             <SelectTrigger className="w-full">
                               <SelectValue placeholder="Adults" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className='dark:bg-slate-500 bg-white'>
                               <SelectItem value="1">1</SelectItem>
                               <SelectItem value="2">2</SelectItem>
                               <SelectItem value="3">3</SelectItem>
@@ -219,7 +219,7 @@ const HeroForm = () => {
                             <SelectTrigger className="w-full">
                               <SelectValue placeholder="Children" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className='dark:bg-slate-500 bg-white'>
                               <SelectItem value="0">0</SelectItem>
                               <SelectItem value="1">1</SelectItem>
                               <SelectItem value="2">2</SelectItem>
