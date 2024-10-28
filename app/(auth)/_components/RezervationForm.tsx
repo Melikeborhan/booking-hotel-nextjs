@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -36,6 +36,8 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { useRouter } from 'next/router'
+import Link from 'next/link'
   
 
 
@@ -63,11 +65,29 @@ const formSchema = z.object({
   }),
   children: z.string().nonempty({
       message: "Select number of children",
+}).refine(data => data.arrivalDate > data.departureDate,{
+    message: "Departure date must be after arrival date",
+    path:['departureDate']
 })
   })
 
 
 const RezervationForm = ({ roomId }: RezervationFormProps) => {
+  const [user, setUser] = useState(null);
+ 
+
+  useEffect(()=>{
+    const fetchUser = async()=>{
+      const authData = localStorage.getItem("pocketbase_auth");
+      if(authData){
+        const {token, model} = JSON.parse(authData);
+        setUser(model)
+      }
+    }
+    fetchUser();
+  },[])
+
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -84,6 +104,18 @@ const RezervationForm = ({ roomId }: RezervationFormProps) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(data)
+  }
+
+
+  if(!user){
+    return(
+      <div className='p-6 bgone mt-5 rounded-lg overflow-hidden text-center '>
+         <span className='ml-2'> Login Form Rezervation    </span>
+          <Link className='text-yellow-500' href="/auth/login">
+            Login Page
+          </Link>
+      </div>
+    )
   }
 
 
