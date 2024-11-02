@@ -47,13 +47,13 @@ const formSchema = z.object({
     departureDate: z.date().nullable().refine(date => !!date, {
       message: "departure date is required",
     }),
-    adults: z.string().nonempty({
-        message: "Select number of adults",
-    }),
-    children: z.string().nonempty({
-        message: "Select number of children",
-  })
-    })
+    adults: z.string().min(1, { message: "Select number of adults" }),
+ children: z.string().min(1, { message: "Select number of children" })
+  }).refine(data => data.arrivalDate < data.departureDate,{
+    message: "Departure date must be after arrival date",
+    path:['departureDate']
+})
+  
  
 
 const HeroForm = () => {
@@ -87,7 +87,7 @@ const HeroForm = () => {
               name="arrivalDate"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='validationLabel grid-cols-2 '>Arrival Date</FormLabel>
+                  <FormLabel className='text-white grid-cols-2 '>Arrival Date</FormLabel>
                   <FormControl>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -117,7 +117,7 @@ const HeroForm = () => {
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
-                          className="bg-white dark:bg-slate-500"  
+                          className="bg-white dark:bg-slate-500"  // Calendar bg color
                         />
                       </PopoverContent>
                     </Popover>
@@ -131,7 +131,7 @@ const HeroForm = () => {
               name="departureDate"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='validationLabel grid-cols-2 '>Departure Date</FormLabel>
+                  <FormLabel className='text-white grid-cols-2 '>Departure Date</FormLabel>
                   <FormControl>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -175,7 +175,7 @@ const HeroForm = () => {
               name="adults"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='validationLabel grid-cols-2 '>Adults </FormLabel>
+                  <FormLabel className='text-white grid-cols-2 '>Adults </FormLabel>
                   <FormControl>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -210,7 +210,7 @@ const HeroForm = () => {
               name="children"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='validationLabel grid-cols-2 '>Children </FormLabel>
+                  <FormLabel className='text-white grid-cols-2 '>Children </FormLabel>
                   <FormControl>
                     <Popover>
                       <PopoverTrigger asChild>

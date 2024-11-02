@@ -36,11 +36,11 @@ const UserToggle = () => {
           <DropdownMenuTrigger className='flex text-white text-xs justify-center items-center'>
             <UserIcon className='text-white dark:text-white'/>  
           </DropdownMenuTrigger>
-          <DropdownMenuContent className='bg-white'>
-              <DropdownMenuLabel className='text-yellow-500'>{user.username}</DropdownMenuLabel>
+          <DropdownMenuContent className='dark:bg-black bg-white'>
+              <DropdownMenuLabel className='text-yellow-500 text-xl font-bold'>{user.username}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               
-              <DropdownMenuItem className='cursor-pointer' onClick={()=>{localStorage.removeItem("pocketbase_auth");setUser(null);router.refresh();router.push("/")}}>
+              <DropdownMenuItem className='cursor-pointer gap-2' onClick={()=>{localStorage.removeItem("pocketbase_auth");setUser(null);router.refresh();router.push("/")}}>
                 Logout
               </DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
