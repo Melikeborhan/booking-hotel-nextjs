@@ -36,17 +36,16 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { useRouter } from 'next/navigation'
+  
+const today = new Date();
+today.setHours(0, 0, 0, 0);  
   
 
 
-
 const formSchema = z.object({
-    arrivalDate: z.date().nullable().refine(date => !!date, {
-      message: "arrivel date is required",
-    }),
-    departureDate: z.date().nullable().refine(date => !!date, {
-      message: "departure date is required",
-    }),
+  arrivalDate: z.date().min(today, { message: "Arrival date must be after today." }),
+  departureDate: z.date().min(today, { message: "Departure date must be after today." }),
     adults: z.string().min(1, { message: "Select number of adults" }),
  children: z.string().min(1, { message: "Select number of children" })
   }).refine(data => data.arrivalDate < data.departureDate,{
@@ -57,7 +56,7 @@ const formSchema = z.object({
  
 
 const HeroForm = () => {
-
+    const router = useRouter()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -69,10 +68,17 @@ const HeroForm = () => {
         },
       })
       const onSubmit = (data: z.infer<typeof formSchema>) => {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(data)
-      }
+        const { arrivalDate, departureDate, adults, children } = data
+        const query = new URLSearchParams({
+
+          arrivalDate: format(arrivalDate, "yyyy-MM-dd"),
+          departureDate: format(departureDate, "yyyy-MM-dd"),
+          adults:adults.toString(),
+          children:children.toString(),
+
+      })
+      router.push(`/search-rooms?${query}`)
+    }
 
 
   return (
