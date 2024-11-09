@@ -251,7 +251,7 @@ const HeroForm = () => {
             />            
 
             
-<Button variant="mybutton"  className='col-span-1 md:col-span-4 rounded-xl mt-6' type="submit">Submit</Button>
+<Button variant="mybutton"  className='col-span-1 md:col-span-4 rounded-xl mt-6' type="submit">Search</Button>
          
           </form>
         </Form> 
