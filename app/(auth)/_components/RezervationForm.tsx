@@ -102,7 +102,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
 
             const reservationdata = {
                 room: roomId,
-                user: user?.id ,
+                user: user?.id,
                 guest_fullname: data.guestFullname,
                 guest_email: data.guestEmail,
                 arrival_date: data.arrivalDate.toISOString(),
@@ -216,6 +216,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
                                                 selected={field.value}
                                                 onSelect={(date) => field.onChange(date)}
                                                 initialFocus
+                                                className="bg-white dark:bg-slate-500" 
                                             />
                                         </PopoverContent>
                                     </Popover>
@@ -250,6 +251,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
                                                 selected={field.value}
                                                 onSelect={(date) => field.onChange(date)}
                                                 initialFocus
+                                                className="bg-white dark:bg-slate-500" 
                                             />
                                         </PopoverContent>
                                     </Popover>
@@ -269,7 +271,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
                                         <SelectTrigger className="w-full]">
                                             <SelectValue placeholder="Adults" />
                                         </SelectTrigger>
-                                        <SelectContent>
+                                        <SelectContent className='dark:bg-slate-500 bg-white'>
                                             <SelectItem value="1">1</SelectItem>
                                             <SelectItem value="2">2</SelectItem>
                                             <SelectItem value="3">3</SelectItem>
@@ -295,7 +297,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
                                         <SelectTrigger className="w-full]">
                                             <SelectValue placeholder="Adults" />
                                         </SelectTrigger>
-                                        <SelectContent>
+                                        <SelectContent className='dark:bg-slate-500 bg-white'>
                                             <SelectItem value="0">0</SelectItem>
                                             <SelectItem value="1">1</SelectItem>
                                             <SelectItem value="2">2</SelectItem>
@@ -319,3 +321,4 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
 }
 
 export default ReservationForm
+

@@ -161,7 +161,7 @@ const HeroForm = () => {
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
-                          className="bg-white dark:bg-slate-500"  // Calendar bg color
+                          className="bg-white dark:bg-slate-500"  
                         />
                       </PopoverContent>
                     </Popover>
@@ -240,7 +240,7 @@ const HeroForm = () => {
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
-                          className="bg-white"  // Calendar bg color
+                          className="bg-white dark:bg-slate-500" 
                         />
                       </PopoverContent>
                     </Popover>

@@ -43,7 +43,9 @@ const UserToggle = () => {
               <DropdownMenuItem className='cursor-pointer gap-2' onClick={()=>{localStorage.removeItem("pocketbase_auth");setUser(null);router.refresh();router.push("/")}}>
                 Logout
               </DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <Link href="/my-rezervation">
+              <DropdownMenuItem>My Rezervation</DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
