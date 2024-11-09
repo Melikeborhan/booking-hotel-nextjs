@@ -215,6 +215,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
                                                 mode="single"
                                                 selected={field.value}
                                                 onSelect={(date) => field.onChange(date)}
+                                                disabled={(date) => date < today} 
                                                 initialFocus
                                                 className="bg-white dark:bg-slate-500" 
                                             />
@@ -250,6 +251,7 @@ const ReservationForm = ({ roomId }: ReservationFormProps) => {
                                                 mode="single"
                                                 selected={field.value}
                                                 onSelect={(date) => field.onChange(date)}
+                                                disabled={(date) => date < today} 
                                                 initialFocus
                                                 className="bg-white dark:bg-slate-500" 
                                             />

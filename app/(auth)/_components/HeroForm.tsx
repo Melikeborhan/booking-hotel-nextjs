@@ -119,9 +119,7 @@ const HeroForm = () => {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
+                          disabled={(date) => date < today}
                           initialFocus
                           className="bg-white dark:bg-slate-500"  // Calendar bg color
                         />
@@ -163,9 +161,7 @@ const HeroForm = () => {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
+                          disabled={(date) => date < today}
                           initialFocus
                           className="bg-white dark:bg-slate-500"  
                         />
