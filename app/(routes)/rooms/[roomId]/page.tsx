@@ -9,7 +9,7 @@ import {
 import { apiImagesUrl } from '@/constans';
 import Image from 'next/image';
 import { getRoomDetail } from '@/app/actions/getRooms';
-import RezervationForm from '@/app/(auth)/_components/RezervationForm';
+import ReservationForm from '@/app/(auth)/_components/ReservationForm';
 
 
 interface RoomPageDetailProps {
@@ -58,7 +58,7 @@ const RoomPageDetail = async ({ params }: RoomPageDetailProps) => {
       </div>
 
       <div className='bgone mt-5 rounded-lg overflow-hidden shadow-md  mb-8 myborder'>
-        <RezervationForm  roomId={params.roomId}/>
+        <ReservationForm  roomId={params.roomId}/>
       </div>
 
     </div>

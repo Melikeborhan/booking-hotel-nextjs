@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 
-const MyRezervationPage = () => {
+const MyReservationPage = () => {
     const [user, setUser] = useState(null);
     const router = useRouter();
     const [isUserLoaded,setIsUserLoaded] = useState(false);
-    const [revservations,setRezervations] = useState<Rezervation[]>([]);//TODO:burada [] acma nedenımız ılk baslangıcında bos olmasıdır ve ıcınde bırden fazla rezervasyon olabılır
+    const [reservations,setReservations] = useState<Reservation[]>([]);//TODO:burada [] acma nedenımız ılk baslangıcında bos olmasıdır ve ıcınde bırden fazla rezervasyon olabılır
 
 
     useEffect(()=>{
@@ -35,7 +35,7 @@ const MyRezervationPage = () => {
     
 
       useEffect(()=>{
-      const fetchRezervation = async()=>{
+      const fetchReservation = async()=>{
         if(!user) return;
 
         try{
@@ -45,7 +45,7 @@ const MyRezervationPage = () => {
             sort: "-arrival_date",
         });
         console.log(records.items);
-        setRezervations(records.items);
+        setReservations(records.items);
         
 
         } catch(error){
@@ -54,7 +54,7 @@ const MyRezervationPage = () => {
       
     }
     
-    fetchRezervation()
+    fetchReservation()
     },[user])
 
     useEffect(()=>{
@@ -78,8 +78,20 @@ const MyRezervationPage = () => {
     }
 
   return (
-    <div >MyRezervationPage</div>
+    <div className='pt-44 p-6 container'>
+        <h1 className='text-2xl font-bold mb-4'>Reservations</h1>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            {reservations.map(reservation=>(
+                <div key={reservation.id}>
+
+                </div>
+            ))}
+               
+       
+
+        </div>
+        </div>
   )
 }
 
-export default MyRezervationPage
+export default MyReservationPage

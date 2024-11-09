@@ -36,7 +36,7 @@ const RoomItem = ({room}:RoomItemProps) => {
     <div className='flex justify-between items-center ml-4 mb-4 font-bold'>
         <span className='text-red-600'>{room.price}/Turkey </span>
         <Link href={`/rooms/${room.id}`}>
-       <Button className='mr-4 rounded-xl' variant={'mybutton'}>Rezervation</Button>
+       <Button className='mr-4 rounded-xl' variant={'mybutton'}>Reservation</Button>
         </Link>
     </div>
   </div>
