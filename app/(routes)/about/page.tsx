@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image';
 
 const AboutPage = () => {
 
@@ -20,9 +21,13 @@ const AboutPage = () => {
   },[])
   return (
     
-    <div className='pt-44'>
+    <div className='pt-44 flex items-center justify-center  container mb-20'>
      
-      
+      <Image
+      src='/12.jpg'
+      width={1090}
+      height={1090}
+      />
    
     </div>
   )

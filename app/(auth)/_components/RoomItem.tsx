@@ -15,12 +15,12 @@ const RoomItem = ({room}:RoomItemProps) => {
     <>
     <div className='flex flex-col bgone shadow-sm shadow-yellow-300 rounded-xl owerflow-hidden'>
     <Image
-    src={`${apiImagesUrl}/${room.collectionId}/${room.id}/${room.images[0]}`}
+    src={`${apiImagesUrl}/${room.collectionId}/${room.id}/${room.images[0]}`} 
     alt=''
     width={1920}
     height={1080}
     className='h-60 w-full object-cover mb-4 rounded-t-xl'
-    priority={true}
+    
     />
     <div className='container '>
     <div className='mb-3'>
