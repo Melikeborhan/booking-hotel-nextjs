@@ -53,8 +53,6 @@ const SearchPageRooms = () => {
       
 
     }
-    
-
     fetchAvailableRooms()
     },[arrivalDate, departureDate, adults, children])
 

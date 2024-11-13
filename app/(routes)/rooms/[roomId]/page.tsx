@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -11,7 +11,6 @@ import Image from 'next/image';
 import { getRoomDetail } from '@/app/actions/getRooms';
 import ReservationForm from '@/app/(auth)/_components/ReservationForm';
 
-
 interface RoomPageDetailProps {
   params: {
     roomId: string;
@@ -19,50 +18,41 @@ interface RoomPageDetailProps {
 }
 
 const RoomPageDetail = async ({ params }: RoomPageDetailProps) => {
+  const room = await getRoomDetail(params.roomId);
 
-  const room = await getRoomDetail(params.roomId)
   return (
     <div className='pt-44 max-w-6xl mx-auto p-4 mt-10'>
       <div className='bgone shadow-md rounded-lg myborder overflow-hidden flex flex-col md:flex-row'>
-        <div className='md:w-1/2  '>
+        <div className='md:w-1/2'>
           <Carousel>
             <CarouselContent>
-
               {room.images.map((image, index) => (
                 <CarouselItem key={index}>
                   <Image
-                    src={`${apiImagesUrl}/${room.collectionId}/${room.id}/${room.images[index]}`}
+                    src={`${apiImagesUrl}/${room.collectionId}/${room.id}/${image}`} // image olarak düzeltildi
                     alt=''
                     width={1920}
                     height={1080}
                     className='h-60 w-full md:h-full object-cover'
-
                   />
                 </CarouselItem>
               ))}
-
-
             </CarouselContent>
-            <CarouselPrevious className='left-0 ' />
-            <CarouselNext className='right-0 ' />
+            <CarouselPrevious className='left-0' />
+            <CarouselNext className='right-0' />
           </Carousel>
-
         </div>
-        <div className='md:w-1/2 p-4 flex  flex-col  items-center justify-center gap-4  '>
-        <h2 className='text-2xl font-bold mb-2'>{room.room_name}</h2>
-        <p>{room.type}</p>
-        <div className='text-lg font-semibold '>${room.price} per night</div>
-
+        <div className='md:w-1/2 p-4 flex flex-col items-center justify-center gap-4'>
+          <h2 className='text-2xl font-bold mb-2'>{room.room_name}</h2>
+          <p>{room.type}</p>
+          <div className='text-lg font-semibold '>${room.price} per night</div>
         </div>
-
       </div>
-
-      <div className='bgone mt-5 rounded-lg overflow-hidden shadow-md  mb-8 myborder'>
-        <ReservationForm  roomId={params.roomId}/>
+      <div className='bgone mt-5 rounded-lg overflow-hidden shadow-md mb-8 myborder'>
+        <ReservationForm roomId={params.roomId} />
       </div>
-
     </div>
-  )
+  );
 }
 
-export default RoomPageDetail
+export default RoomPageDetail;
