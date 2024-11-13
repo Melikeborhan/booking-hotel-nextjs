@@ -1,10 +1,10 @@
 import { pb } from "@/lib/pocketbase";
 
 
-export  const getRoomDetail= async(recordId)=> {
+export  const getRoomDetail= async(roomId)=> {
     try {
 
-        const record = await pb.collection('rooms').getOne(recordId, {
+        const record = await pb.collection('rooms').getOne(roomId, {
             expand: 'relField1,relField2.subRelField',
         });
         return record;
@@ -14,12 +14,10 @@ export  const getRoomDetail= async(recordId)=> {
         return [];
         
     }
-    
 }
 
 export  const getRooms= async()=> {
     try {
-
         const resultList = await pb.collection('rooms').getList(1, 50, {
             filter: 'created >= "2022-01-01 00:00:00"',
         });

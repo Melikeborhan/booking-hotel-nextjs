@@ -8,7 +8,7 @@ export async function getSlider() {
         const records = await pb.collection('sliders').getFullList({
             sort: '-created',
     }); 
-    return records
+        return records
     }catch (error){
         console.error('Error getting slider images:' ,error);
         return[]
